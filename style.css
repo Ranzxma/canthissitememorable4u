@@ -36,12 +36,124 @@ body::-webkit-scrollbar-thumb {
 .grain {
     position: fixed;
     inset: 0;
+
     pointer-events: none;
+
     opacity: .035;
+
     z-index: 100;
 
     background-image:
         url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+}
+
+
+/* =========================
+   AMBIENT BACKGROUND
+========================= */
+
+.ambient {
+    position: fixed;
+
+    width: 500px;
+    height: 500px;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    filter: blur(120px);
+
+    opacity: .08;
+
+    z-index: 0;
+}
+
+.ambient-one {
+    top: -250px;
+    left: -250px;
+
+    background: #ffffff;
+}
+
+.ambient-two {
+    bottom: -300px;
+    right: -250px;
+
+    background: #888;
+}
+
+
+/* =========================
+   MUSIC
+========================= */
+
+.music-status {
+    position: fixed;
+
+    top: 25px;
+    right: 25px;
+
+    z-index: 90;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #555;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    opacity: 0;
+
+    transform: translateY(-10px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+.music-status.active {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+.music-dot {
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #555;
+
+    box-shadow:
+        0 0 0 0 rgba(255,255,255,.2);
+
+    animation: musicPulse 2s infinite;
+}
+
+@keyframes musicPulse {
+
+    0% {
+        box-shadow:
+            0 0 0 0 rgba(255,255,255,.2);
+    }
+
+    70% {
+        box-shadow:
+            0 0 0 7px rgba(255,255,255,0);
+    }
+
+    100% {
+        box-shadow:
+            0 0 0 0 rgba(255,255,255,0);
+    }
+
 }
 
 
@@ -52,24 +164,64 @@ body::-webkit-scrollbar-thumb {
 .screen {
     min-height: 100vh;
 
+    position: relative;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     text-align: center;
 
+    overflow: hidden;
+
     background:
         radial-gradient(
             circle at center,
-            #191919 0%,
-            #090909 40%,
+            #1b1b1b 0%,
+            #090909 38%,
             #030303 100%
         );
+}
+
+.opening-glow {
+    position: absolute;
+
+    width: 450px;
+    height: 450px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.025);
+
+    filter: blur(80px);
+
+    animation: openingGlow 6s ease-in-out infinite;
+}
+
+@keyframes openingGlow {
+
+    0%,
+    100% {
+        transform: scale(.9);
+        opacity: .5;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
 }
 
 .opening-content {
     width: 90%;
     max-width: 700px;
+
+    position: relative;
+
+    z-index: 2;
 
     animation: fadeUp 1.5s ease;
 }
@@ -77,9 +229,9 @@ body::-webkit-scrollbar-thumb {
 .date-top {
     color: #777;
 
-    font-size: 11px;
+    font-size: 10px;
 
-    letter-spacing: 6px;
+    letter-spacing: 7px;
 
     margin-bottom: 35px;
 }
@@ -91,12 +243,31 @@ body::-webkit-scrollbar-thumb {
     background: #555;
 
     margin: 0 auto 35px;
+
+    position: relative;
+}
+
+.line::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 50%;
+
+    width: 4px;
+    height: 4px;
+
+    background: #777;
+
+    transform: translate(-50%, -50%) rotate(45deg);
 }
 
 .mini {
     color: #777;
 
-    font-size: 10px;
+    font-size: 9px;
 
     letter-spacing: 6px;
 
@@ -112,7 +283,10 @@ h1 {
 
     line-height: .9;
 
-    letter-spacing: -3px;
+    letter-spacing: -4px;
+
+    text-shadow:
+        0 0 40px rgba(255,255,255,.04);
 }
 
 .subtitle {
@@ -120,25 +294,42 @@ h1 {
 
     color: #777;
 
-    font-size: 13px;
+    font-size: 12px;
+
+    letter-spacing: .3px;
 }
+
+
+/* =========================
+   BUTTON
+========================= */
 
 button {
     margin-top: 45px;
 
-    padding: 13px 35px;
+    min-width: 130px;
 
-    border: 1px solid #444;
+    padding: 14px 25px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    border: 1px solid #333;
 
     border-radius: 50px;
 
-    background: transparent;
+    background: rgba(255,255,255,.015);
 
     color: white;
 
     font-family: 'Inter', sans-serif;
 
-    font-size: 11px;
+    font-size: 10px;
 
     letter-spacing: 3px;
 
@@ -146,7 +337,15 @@ button {
 
     cursor: pointer;
 
-    transition: .4s;
+    transition:
+        background .4s ease,
+        color .4s ease,
+        border-color .4s ease,
+        transform .4s ease;
+}
+
+.button-arrow {
+    transition: transform .4s ease;
 }
 
 button:hover {
@@ -159,6 +358,41 @@ button:hover {
     transform: translateY(-3px);
 }
 
+button:hover .button-arrow {
+    transform: translateX(4px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:focus-visible {
+    outline: 1px solid white;
+
+    outline-offset: 5px;
+}
+
+
+/* =========================
+   OPENING BOTTOM
+========================= */
+
+.opening-bottom {
+    position: absolute;
+
+    bottom: 25px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: #333;
+
+    font-size: 7px;
+
+    letter-spacing: 4px;
+}
+
 
 /* =========================
    MAIN
@@ -166,6 +400,12 @@ button:hover {
 
 .hidden {
     display: none;
+}
+
+#main {
+    position: relative;
+
+    z-index: 1;
 }
 
 
@@ -191,9 +431,28 @@ button:hover {
     padding: 60px 25px;
 
     border-bottom: 1px solid #151515;
+
+    overflow: hidden;
+}
+
+.hero-glow {
+    position: absolute;
+
+    width: 300px;
+    height: 300px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.018);
+
+    filter: blur(80px);
+
+    pointer-events: none;
 }
 
 .eyebrow {
+    position: relative;
+
     font-size: 9px;
 
     letter-spacing: 5px;
@@ -204,6 +463,8 @@ button:hover {
 }
 
 .hero h2 {
+    position: relative;
+
     font-family: 'Cormorant Garamond', serif;
 
     font-size: clamp(55px, 9vw, 105px);
@@ -211,6 +472,8 @@ button:hover {
     font-weight: 300;
 
     line-height: .95;
+
+    letter-spacing: -2px;
 }
 
 .hero h2 span {
@@ -230,11 +493,6 @@ button:hover {
 
     font-weight: 300;
 }
-
-
-/* =========================
-   HERO BOLD TEXT
-========================= */
 
 .hero-text strong {
     color: #aaa;
@@ -278,20 +536,49 @@ button:hover {
     text-align: center;
 
     padding: 80px 20px;
+
+    position: relative;
+}
+
+.age-wrapper {
+    position: relative;
+
+    line-height: .7;
 }
 
 .age {
+    position: relative;
+
+    z-index: 2;
+
     font-family: 'Cormorant Garamond', serif;
 
     font-size: clamp(150px, 25vw, 300px);
 
     font-weight: 300;
 
-    line-height: .7;
-
     color: #eee;
 
     transition: transform .8s ease;
+}
+
+.age-shadow {
+    position: absolute;
+
+    top: 10px;
+    left: 10px;
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: clamp(150px, 25vw, 300px);
+
+    font-weight: 300;
+
+    color: transparent;
+
+    -webkit-text-stroke: 1px #151515;
+
+    z-index: 1;
 }
 
 .age-section:hover .age {
@@ -374,32 +661,72 @@ button:hover {
     justify-content: center;
 
     text-align: center;
+
+    position: relative;
 }
 
 .dua-card {
     width: min(700px, 100%);
 
-    padding: 60px 40px;
+    position: relative;
+
+    padding: 65px 40px;
 
     border: 1px solid #222;
 
-    background: #090909;
+    background:
+        linear-gradient(
+            145deg,
+            #0d0d0d,
+            #080808
+        );
 
     box-shadow:
-        0 30px 100px rgba(0, 0, 0, .5);
+        0 30px 100px rgba(0,0,0,.5);
 
     transition:
         transform .5s ease,
-        border-color .5s ease;
+        border-color .5s ease,
+        box-shadow .5s ease;
+}
+
+.dua-card::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 8px;
+
+    border: 1px solid #111;
+
+    pointer-events: none;
 }
 
 .dua-card:hover {
     transform: translateY(-5px);
 
     border-color: #333;
+
+    box-shadow:
+        0 40px 120px rgba(0,0,0,.7);
+}
+
+.card-number {
+    position: absolute;
+
+    top: 20px;
+    left: 25px;
+
+    color: #333;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
 }
 
 .arabic {
+    position: relative;
+
     font-family: 'Cormorant Garamond', serif;
 
     font-size: clamp(27px, 4vw, 40px);
@@ -482,6 +809,12 @@ button:hover {
     margin-bottom: 30px;
 }
 
+.message strong {
+    color: #aaa;
+
+    font-weight: 500;
+}
+
 
 /* =========================
    CLARIFICATION
@@ -506,12 +839,17 @@ button:hover {
 
     padding: 55px 50px;
 
-    background: #090909;
+    background:
+        linear-gradient(
+            145deg,
+            #0b0b0b,
+            #080808
+        );
 
     border: 1px solid #1f1f1f;
 
     box-shadow:
-        0 30px 100px rgba(0, 0, 0, .45);
+        0 30px 100px rgba(0,0,0,.45);
 
     transition:
         transform .5s ease,
@@ -524,16 +862,28 @@ button:hover {
     border-color: #2b2b2b;
 }
 
-.clarification-label {
-    text-align: center;
+.note-top {
+    display: flex;
 
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.note-top span {
+    color: #333;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+}
+
+.note-top p {
     color: #555;
 
     font-size: 9px;
 
     letter-spacing: 5px;
-
-    margin-bottom: 25px;
 }
 
 .clarification-line {
@@ -543,7 +893,7 @@ button:hover {
 
     background: #444;
 
-    margin: 0 auto 40px;
+    margin: 25px 0 40px;
 }
 
 .clarification-text {
@@ -589,6 +939,8 @@ button:hover {
     text-align: center;
 
     padding: 50px 20px;
+
+    position: relative;
 }
 
 .star {
@@ -609,6 +961,8 @@ button:hover {
     font-weight: 300;
 
     line-height: 1;
+
+    letter-spacing: -1px;
 }
 
 .ending > p {
@@ -714,6 +1068,15 @@ button:hover {
 
 @media (max-width: 600px) {
 
+    .music-status {
+        top: 18px;
+        right: 18px;
+
+        font-size: 7px;
+
+        letter-spacing: 2px;
+    }
+
     .date-top {
         letter-spacing: 4px;
     }
@@ -726,8 +1089,22 @@ button:hover {
         letter-spacing: -2px;
     }
 
+    .subtitle {
+        font-size: 11px;
+    }
+
+    .opening-bottom {
+        bottom: 20px;
+
+        font-size: 6px;
+    }
+
     .hero {
         padding: 50px 20px;
+    }
+
+    .hero h2 {
+        font-size: clamp(52px, 15vw, 80px);
     }
 
     .hero-text {
@@ -750,6 +1127,10 @@ button:hover {
         font-size: 180px;
     }
 
+    .age-shadow {
+        font-size: 180px;
+    }
+
     .age-text {
         margin-top: 45px;
     }
@@ -763,7 +1144,7 @@ button:hover {
     }
 
     .dua-card {
-        padding: 40px 20px;
+        padding: 50px 20px;
     }
 
     .arabic {
@@ -798,6 +1179,12 @@ button:hover {
         font-size: 11px;
 
         line-height: 1.9;
+    }
+
+    .note-top p {
+        font-size: 8px;
+
+        letter-spacing: 4px;
     }
 
     .ending {
