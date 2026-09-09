@@ -7,10 +7,12 @@ function enterWebsite() {
     const opening = document.getElementById("opening");
     const main = document.getElementById("main");
     const music = document.getElementById("bgMusic");
+    const musicStatus = document.getElementById("musicStatus");
 
     if (!opening || !main) {
         return;
     }
+
 
     /* =========================
        PLAY MUSIC
@@ -20,11 +22,22 @@ function enterWebsite() {
 
         music.volume = 0.5;
 
-        music.play().catch(error => {
+        music.play()
+            .then(() => {
 
-            console.log("Musik tidak dapat diputar:", error);
+                if (musicStatus) {
+                    musicStatus.classList.add("active");
+                }
 
-        });
+            })
+            .catch(error => {
+
+                console.log(
+                    "Musik tidak dapat diputar:",
+                    error
+                );
+
+            });
 
     }
 
@@ -35,7 +48,8 @@ function enterWebsite() {
 
     opening.style.opacity = "0";
 
-    opening.style.transition = "opacity 1s ease";
+    opening.style.transition =
+        "opacity 1s ease";
 
 
     setTimeout(() => {
@@ -62,32 +76,42 @@ function enterWebsite() {
 
 function initializeRevealAnimations() {
 
-    const elements = document.querySelectorAll(".reveal");
+    const elements =
+        document.querySelectorAll(".reveal");
 
     if (!elements.length) {
         return;
     }
 
-    const observer = new IntersectionObserver(
-        (entries, observer) => {
 
-            entries.forEach(entry => {
+    const observer =
+        new IntersectionObserver(
 
-                if (entry.isIntersecting) {
+            (entries, observer) => {
 
-                    entry.target.classList.add("visible");
+                entries.forEach(entry => {
 
-                    observer.unobserve(entry.target);
+                    if (entry.isIntersecting) {
 
-                }
+                        entry.target
+                            .classList
+                            .add("visible");
 
-            });
+                        observer.unobserve(
+                            entry.target
+                        );
 
-        },
-        {
-            threshold: 0.15
-        }
-    );
+                    }
+
+                });
+
+            },
+
+            {
+                threshold: 0.15
+            }
+
+        );
 
 
     elements.forEach(element => {
@@ -103,14 +127,21 @@ function initializeRevealAnimations() {
    INITIALIZATION
 ========================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
-    const main = document.getElementById("main");
+        const main =
+            document.getElementById("main");
 
-    if (main && !main.classList.contains("hidden")) {
+        if (
+            main &&
+            !main.classList.contains("hidden")
+        ) {
 
-        initializeRevealAnimations();
+            initializeRevealAnimations();
+
+        }
 
     }
-
-});
+);
