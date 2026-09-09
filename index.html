@@ -10,27 +10,37 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-    <!-- =========================
-         BACKGROUND MUSIC
-    ========================== -->
-
+    <!-- MUSIC -->
     <audio id="bgMusic" loop>
         <source src="music/love..mp3" type="audio/mpeg">
     </audio>
 
+    <div class="music-status" id="musicStatus">
+        <span class="music-dot"></span>
+        <span>NOW PLAYING</span>
+    </div>
 
+    <!-- GRAIN -->
     <div class="grain"></div>
+
+    <!-- BACKGROUND DECORATION -->
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
 
     <!-- =========================
          OPENING
-    ========================== -->
+    ========================= -->
 
     <section id="opening" class="screen">
+
+        <div class="opening-glow"></div>
 
         <div class="opening-content">
 
@@ -53,40 +63,47 @@
             </p>
 
             <button onclick="enterWebsite()">
-                Next
+                <span>Enter</span>
+                <span class="button-arrow">→</span>
             </button>
 
+        </div>
+
+        <div class="opening-bottom">
+            SCROLL TO BEGIN
         </div>
 
     </section>
 
 
     <!-- =========================
-         MAIN WEBSITE
-    ========================== -->
+         MAIN
+    ========================= -->
 
     <main id="main" class="hidden">
 
 
-        <!-- =========================
-             HERO
-        ========================== -->
+        <!-- HERO -->
 
         <section class="hero reveal">
+
+            <div class="hero-glow"></div>
 
             <p class="eyebrow">
                 6 OCTOBER 2026
             </p>
 
             <h2>
-                Happy Birthday,<br>
+                Happy Birthday,
+                <br>
                 <span>Aathifa.</span>
             </h2>
 
             <p class="hero-text">
-                Today is a special day for you. 
-                May the days ahead be filled with good things, happiness, and unforgettable moments. 
-                I hope we can be 
+                Today is a special day for you.
+                May the days ahead be filled with good things,
+                happiness, and unforgettable moments.
+                I hope we can be
                 <strong>close friends</strong>
                 —
                 <strong>if you don’t mind?</strong>
@@ -99,9 +116,7 @@
         </section>
 
 
-        <!-- =========================
-             AGE
-        ========================== -->
+        <!-- AGE -->
 
         <section class="age-section reveal">
 
@@ -109,8 +124,9 @@
                 A NEW CHAPTER
             </p>
 
-            <div class="age">
-                15
+            <div class="age-wrapper">
+                <div class="age">15</div>
+                <div class="age-shadow">15</div>
             </div>
 
             <p class="age-text">
@@ -119,9 +135,7 @@
 
             <div class="birth-info">
 
-                <span>
-                    Born
-                </span>
+                <span>Born</span>
 
                 <strong>
                     06 October 2011
@@ -133,9 +147,7 @@
 
             <div class="birth-info">
 
-                <span>
-                    Turning
-                </span>
+                <span>Turning</span>
 
                 <strong>
                     15th on 06 October 2026
@@ -146,9 +158,7 @@
         </section>
 
 
-        <!-- =========================
-             DOA
-        ========================== -->
+        <!-- DUA -->
 
         <section class="dua-section reveal">
 
@@ -158,20 +168,28 @@
 
             <div class="dua-card">
 
+                <div class="card-number">
+                    01
+                </div>
+
                 <div class="arabic">
+
                     بَارَكَ اللَّهُ فِي عُمْرِكِ،
                     وَحَفِظَكِ اللَّهُ،
                     وَرَزَقَكِ الصِّحَّةَ وَالسَّعَادَةَ،
                     وَوَفَّقَكِ فِي كُلِّ خُطُوَاتِكِ
+
                 </div>
 
                 <div class="divider"></div>
 
                 <p class="translation">
+
                     “Semoga Allah memberkahi umurmu,
                     menjagamu, memberikan kesehatan dan
                     kebahagiaan kepadamu, serta memberikan
                     kemudahan dalam setiap langkahmu.”
+
                 </p>
 
                 <p class="amin">
@@ -183,9 +201,7 @@
         </section>
 
 
-        <!-- =========================
-             MESSAGE
-        ========================== -->
+        <!-- MESSAGE -->
 
         <section class="message-section reveal">
 
@@ -206,12 +222,15 @@
                     langkahmu diberi petunjuk, dan
                     orang-orang baik selalu hadir
                     dalam perjalanan hidupmu.
+                    <strong>Aamiin..</strong>
                 </p>
 
                 <p>
                     Gk harus sempurna.
-                    <strong>just keep becoming
-                    a better version of yourself.</strong>
+                    <strong>
+                        just keep becoming
+                        a better version of yourself.
+                    </strong>
                 </p>
 
             </div>
@@ -219,35 +238,43 @@
         </section>
 
 
-        <!-- =========================
-             ONE LAST NOTE
-        ========================== -->
+        <!-- ONE LAST NOTE -->
 
         <section class="clarification-section reveal">
 
             <div class="clarification">
 
-                <p class="clarification-label">
-                    ONE LAST NOTE
-                </p>
+                <div class="note-top">
+
+                    <span>
+                        02
+                    </span>
+
+                    <p>
+                        ONE LAST NOTE
+                    </p>
+
+                </div>
 
                 <div class="clarification-line"></div>
 
                 <div class="clarification-text">
 
                     <p>
-                        Meluruskan kenapa gw membuat ini,sebelum itu gw gk biasa make (saya/aku),
+                        Meluruskan(klarifikasi) kenapa gw membuat ini,
+                        sebelum itu gw gk biasa make (saya/aku),
                         jadi make gw aja yaa. Kalau gk biasa baca,
-                        maaf bgt kalo ngerasa aneh, soalnya udah kebiasa di sini
-                        make (gw). Yak, langsung aja.
+                        maaf bgt kalo ngerasa aneh, soalnya udah
+                        kebiasa di sini make (gw).
+                        Yak, langsung aja.
                     </p>
 
                     <p>
                         Gw (Randi) membuat website ini tidak ada
-                        maksud apa-apa. Gw murni iseng🗿, soalnya
-                        biasanya kalau ulang tahun temen gw udah
-                        ketempel di otak, kayak gk bisa lepas dari
-                        “aih, ucapin gk ya? Atau gk ya?”
+                        maksud apa-apa. Gw murni iseng🗿,
+                        soalnya biasanya kalau ulang tahun temen
+                        gw udah ketempel di otak, kayak gk bisa lepas
+                        dari “aih, ucapin gk ya? Atau gk ya?”
                         Yah, pokoknya gitulah wkwk.😭✌️
                     </p>
 
@@ -255,7 +282,7 @@
                         Gw cuman iseng buat project ini...
                         karena kemarin gk sengaja liat ultahmu
                         di postingan IGmu. Jadi sekalian aja buat
-                        project ini, karena ultahmu juga bentar lagi.
+                        project ini, karena ultahmu juga bentar lagi. jadi kayak stalker kan jadinya😅
                     </p>
 
                     <p>
@@ -268,23 +295,29 @@
 
                     <p>
                         Dari project ini mungkin menambah memori
-                        kecil yang bisa diingat? <em>Maybe?</em>
+                        kecil yang bisa diingat?
+                        <em>Maybe?</em>
                     </p>
 
                     <p>
                         Project ini juga sebagian dibantu AI kok wkwk 😹.
-                        Gk seluruhnya gw effort, ada beberapa bagian juga make skill sendiri,
-                        tapi masih banyakan bantuan AI wkwk, gw masih bingung mau ngirim website ini ke lu atau gk, soalnya gk deket.
-                        Salah satu alasan juga agar kita dekat, makanya gw buat ini.. semoga deket ya? ah malu sendiri jadinya😭
+                        Gk seluruhnya gw effort, ada beberapa bagian
+                        juga make skill sendiri, tapi masih banyakan
+                        bantuan AI wkwk, gw masih bingung mau ngirim
+                        website ini ke lu atau gk, soalnya gk deket.
+                        Salah satu alasan juga agar kita dekat,
+                        makanya gw buat ini.. semoga deket ya?
+                        ah malu sendiri jadinya😭
                     </p>
 
                     <p>
                         So... yaaa, makasih yaa udah mau baca
-                        pesan omong kosong ini.
+                        pesan omong kosong ini. maaf mengganggu waktumu, semoga umurmu panjang, sehat selalu
                     </p>
 
                     <p>
-                        Sekali lagi HBD yak,semoga panjang umur sehat selalu.. thank uu..
+                        Sekali lagi HBD yak,
+                        thank uu..
                     </p>
 
                 </div>
@@ -294,9 +327,7 @@
         </section>
 
 
-        <!-- =========================
-             ENDING
-        ========================== -->
+        <!-- ENDING -->
 
         <section class="ending reveal">
 
@@ -305,7 +336,8 @@
             </div>
 
             <h2>
-                May your next chapter<br>
+                May your next chapter
+                <br>
                 be a beautiful one.
             </h2>
 
@@ -319,6 +351,9 @@
                 — a little birthday page for Aathifa
             </span>
 
+            <p>
+                Song by Love-Wave to earth
+            </p>
         </section>
 
     </main>
